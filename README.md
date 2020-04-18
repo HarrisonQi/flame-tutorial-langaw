@@ -14,6 +14,7 @@
 也欢迎微信搜索"阿航的技术小站"公众号, 获取更多Flutter资讯.
 
 ## 感谢
-教程博客内容灵感部分来源于官方文档《Create a Mobile Game with Flutter and Flame – Beginner Tutorial》
-Flame仓库地址
-pub地址
+排名不分先后
+- 教程博客内容灵感部分来源于官方文档[《Create a Mobile Game with Flutter and Flame – Beginner Tutorial》](https://jap.alekhin.io/create-mobile-game-flutter-flame-beginner-tutorial)
+- [Flame仓库地址](https://github.com/flame-engine/flame)
+- [pub.dev地址](https://pub.flutter-io.cn/packages/flame)
