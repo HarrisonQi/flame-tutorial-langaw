@@ -6,7 +6,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/gestures.dart';
 import 'package:langaw/components/backyard.dart';
 import 'package:langaw/components/fly.dart';
-
+import 'package:langaw/components/house-fly.dart';
 class LangawGame extends Game {
   Size screenSize;
   double tileSize;
@@ -31,7 +31,7 @@ class LangawGame extends Game {
   void spawnFly() {
     double x = rnd.nextDouble() * (screenSize.width - tileSize);
     double y = rnd.nextDouble() * (screenSize.height - tileSize);
-    flies.add(Fly(this, x, y));
+    flies.add(HouseFly(this, x, y));
   }
 
   void render(Canvas canvas) {
