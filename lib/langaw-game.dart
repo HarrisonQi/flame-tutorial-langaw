@@ -6,16 +6,20 @@ import 'package:flame/game.dart';
 import 'package:flutter/gestures.dart';
 import 'package:langaw/components/agile-fly.dart';
 import 'package:langaw/components/backyard.dart';
+import 'package:langaw/components/credits-button.dart';
 import 'package:langaw/components/drooler-fly.dart';
 import 'package:langaw/components/fly.dart';
+import 'package:langaw/components/help-button.dart';
 import 'package:langaw/components/house-fly.dart';
 import 'package:langaw/components/hungry-fly.dart';
 import 'package:langaw/components/macho-fly.dart';
+import 'package:langaw/components/start-button.dart';
+import 'package:langaw/controllers/spawner.dart';
 import 'package:langaw/view.dart';
 import 'package:langaw/views/home-view.dart';
-import 'package:langaw/components/start-button.dart';
 import 'package:langaw/views/lost-view.dart';
-import 'package:langaw/controllers/spawner.dart';
+import 'package:langaw/views/help-view.dart';
+import 'package:langaw/views/credits-view.dart';
 
 class LangawGame extends Game {
   Size screenSize;
@@ -28,6 +32,10 @@ class LangawGame extends Game {
   StartButton startButton;
   LostView lostView;
   FlySpawner spawner;
+  HelpButton helpButton;
+  CreditsButton creditsButton;
+  HelpView helpView;
+  CreditsView creditsView;
 
   LangawGame() {
     initialize();
@@ -43,6 +51,12 @@ class LangawGame extends Game {
     rnd = Random();
     lostView = LostView(this);
     spawner = FlySpawner(this);
+
+    helpButton = HelpButton(this);
+    creditsButton = CreditsButton(this);
+
+    helpView = HelpView(this);
+    creditsView = CreditsView(this);
   }
 
   void spawnFly() {
@@ -77,9 +91,14 @@ class LangawGame extends Game {
 
     if (activeView == View.home || activeView == View.lost) {
       startButton.render(canvas);
+      helpButton.render(canvas);
+      creditsButton.render(canvas);
     }
 
     if (activeView == View.lost) lostView.render(canvas);
+
+    if (activeView == View.help) helpView.render(canvas);
+    if (activeView == View.credits) creditsView.render(canvas);
   }
 
   void update(double t) {
@@ -95,8 +114,15 @@ class LangawGame extends Game {
   }
 
   void onTapDown(TapDownDetails d) {
-
     bool isHandled = false;
+
+    // 弹窗
+    if (!isHandled) {
+      if (activeView == View.help || activeView == View.credits) {
+        activeView = View.home;
+        isHandled = true;
+      }
+    }
 
     // "开始游戏"按钮
     if (!isHandled && startButton.rect.contains(d.globalPosition)) {
@@ -118,6 +144,22 @@ class LangawGame extends Game {
       });
       if (activeView == View.playing && !didHitAFly) {
         activeView = View.lost;
+      }
+    }
+
+    // 教程按钮
+    if (!isHandled && helpButton.rect.contains(d.globalPosition)) {
+      if (activeView == View.home || activeView == View.lost) {
+        helpButton.onTapDown();
+        isHandled = true;
+      }
+    }
+
+    // 感谢按钮
+    if (!isHandled && creditsButton.rect.contains(d.globalPosition)) {
+      if (activeView == View.home || activeView == View.lost) {
+        creditsButton.onTapDown();
+        isHandled = true;
       }
     }
   }
