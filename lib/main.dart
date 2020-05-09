@@ -28,6 +28,7 @@ void main() async {
     'flies/macho-fly-1.png',
     'flies/macho-fly-2.png',
     'flies/macho-fly-dead.png',
+    'ui/callout.png',
   ]);
 
   LangawGame game = LangawGame();

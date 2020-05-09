@@ -20,6 +20,7 @@ import 'package:langaw/views/home-view.dart';
 import 'package:langaw/views/lost-view.dart';
 import 'package:langaw/views/help-view.dart';
 import 'package:langaw/views/credits-view.dart';
+import 'package:langaw/components/score-display.dart';
 
 class LangawGame extends Game {
   Size screenSize;
@@ -36,6 +37,9 @@ class LangawGame extends Game {
   CreditsButton creditsButton;
   HelpView helpView;
   CreditsView creditsView;
+  int score;
+
+  ScoreDisplay scoreDisplay;
 
   LangawGame() {
     initialize();
@@ -55,8 +59,12 @@ class LangawGame extends Game {
     helpButton = HelpButton(this);
     creditsButton = CreditsButton(this);
 
+    scoreDisplay = ScoreDisplay(this);
+
     helpView = HelpView(this);
     creditsView = CreditsView(this);
+
+    score = 0;
   }
 
   void spawnFly() {
@@ -85,6 +93,8 @@ class LangawGame extends Game {
   void render(Canvas canvas) {
     background.render(canvas);
 
+    if (activeView == View.playing) scoreDisplay.render(canvas);
+
     flies.forEach((Fly fly) => fly.render(canvas));
 
     if (activeView == View.home) homeView.render(canvas);
@@ -106,6 +116,8 @@ class LangawGame extends Game {
     flies.removeWhere((Fly fly) => fly.isOffScreen);
 
     spawner.update(t);
+
+    if (activeView == View.playing) scoreDisplay.update(t);
   }
 
   void resize(Size size) {
