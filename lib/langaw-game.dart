@@ -21,6 +21,8 @@ import 'package:langaw/views/lost-view.dart';
 import 'package:langaw/views/help-view.dart';
 import 'package:langaw/views/credits-view.dart';
 import 'package:langaw/components/score-display.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:langaw/components/highscore-display.dart';
 
 class LangawGame extends Game {
   Size screenSize;
@@ -41,7 +43,11 @@ class LangawGame extends Game {
 
   ScoreDisplay scoreDisplay;
 
-  LangawGame() {
+  final SharedPreferences storage;
+
+  HighscoreDisplay highscoreDisplay;
+
+  LangawGame(this.storage) {
     initialize();
   }
 
@@ -60,6 +66,7 @@ class LangawGame extends Game {
     creditsButton = CreditsButton(this);
 
     scoreDisplay = ScoreDisplay(this);
+    highscoreDisplay = HighscoreDisplay(this);
 
     helpView = HelpView(this);
     creditsView = CreditsView(this);
@@ -93,6 +100,7 @@ class LangawGame extends Game {
   void render(Canvas canvas) {
     background.render(canvas);
 
+    highscoreDisplay.render(canvas);
     if (activeView == View.playing) scoreDisplay.render(canvas);
 
     flies.forEach((Fly fly) => fly.render(canvas));

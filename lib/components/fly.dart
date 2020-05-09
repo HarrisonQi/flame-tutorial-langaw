@@ -38,7 +38,7 @@ class Fly {
       deadSprite.renderRect(c, flyRect.inflate(2));
     } else {
       flyingSprite[flyingSpriteIndex.toInt()].renderRect(c, flyRect.inflate(2));
-      
+
       if (game.activeView == View.playing) {
         callout.render(c);
       }
@@ -81,6 +81,11 @@ class Fly {
 
       if (game.activeView == View.playing) {
         game.score += 1;
+
+        if (game.score > (game.storage.getInt('highscore') ?? 0)) {
+          game.storage.setInt('highscore', game.score);
+          game.highscoreDisplay.updateHighscore();
+        }
       }
     }
   }
