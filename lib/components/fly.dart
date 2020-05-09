@@ -5,6 +5,8 @@ import 'package:flame/sprite.dart';
 import 'package:langaw/view.dart';
 import 'package:langaw/components/callout.dart';
 
+import 'package:flame/flame.dart';
+
 class Fly {
 
   final LangawGame game;
@@ -88,5 +90,7 @@ class Fly {
         }
       }
     }
+
+    Flame.audio.play('sfx/ouch' + (game.rnd.nextInt(11) + 1).toString() + '.ogg');
   }
 }
