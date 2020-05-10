@@ -23,6 +23,7 @@ import 'package:langaw/views/credits-view.dart';
 import 'package:langaw/components/score-display.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:langaw/components/highscore-display.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class LangawGame extends Game {
   Size screenSize;
@@ -42,6 +43,9 @@ class LangawGame extends Game {
   int score;
 
   ScoreDisplay scoreDisplay;
+
+  AudioPlayer homeBGM;
+  AudioPlayer playingBGM;
 
   final SharedPreferences storage;
 
@@ -72,6 +76,26 @@ class LangawGame extends Game {
     creditsView = CreditsView(this);
 
     score = 0;
+
+
+    homeBGM = await Flame.audio.loopLongAudio('bgm/home.mp3', volume: .25);
+    homeBGM.pause();
+    playingBGM = await Flame.audio.loopLongAudio('bgm/playing.mp3', volume: .25);
+    playingBGM.pause();
+
+    playHomeBGM();
+  }
+
+  void playHomeBGM() {
+    playingBGM.pause();
+    playingBGM.seek(Duration.zero);
+    homeBGM.resume();
+  }
+
+  void playPlayingBGM() {
+    homeBGM.pause();
+    homeBGM.seek(Duration.zero);
+    playingBGM.resume();
   }
 
   void spawnFly() {
@@ -164,6 +188,7 @@ class LangawGame extends Game {
       });
       if (activeView == View.playing && !didHitAFly) {
         Flame.audio.play('sfx/haha' + (rnd.nextInt(5) + 1).toString() + '.ogg');
+        playHomeBGM();
         activeView = View.lost;
       }
     }

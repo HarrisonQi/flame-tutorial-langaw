@@ -40,6 +40,7 @@ class Callout {
       value = value - .5 * t;
       if (value <= 0) {
         Flame.audio.play('sfx/haha' + (fly.game.rnd.nextInt(5) + 1).toString() + '.ogg');
+        fly.game.playHomeBGM();
         fly.game.activeView = View.lost;
       }
     }

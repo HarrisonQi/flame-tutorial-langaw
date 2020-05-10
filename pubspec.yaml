@@ -82,6 +82,8 @@ flutter:
     - assets/audio/sfx/ouch9.ogg
     - assets/audio/sfx/ouch10.ogg
     - assets/audio/sfx/ouch11.ogg
+    - assets/audio/bgm/home.mp3
+    - assets/audio/bgm/playing.mp3
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
