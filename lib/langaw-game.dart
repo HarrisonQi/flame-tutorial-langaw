@@ -25,6 +25,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:langaw/components/highscore-display.dart';
 import 'package:audioplayers/audioplayers.dart';
 
+import 'package:langaw/components/music-button.dart';
+import 'package:langaw/components/sound-button.dart';
+
 class LangawGame extends Game {
   Size screenSize;
   double tileSize;
@@ -51,6 +54,9 @@ class LangawGame extends Game {
 
   HighscoreDisplay highscoreDisplay;
 
+  MusicButton musicButton;
+  SoundButton soundButton;
+
   LangawGame(this.storage) {
     initialize();
   }
@@ -69,6 +75,9 @@ class LangawGame extends Game {
     helpButton = HelpButton(this);
     creditsButton = CreditsButton(this);
 
+    musicButton = MusicButton(this);
+    soundButton = SoundButton(this);
+
     scoreDisplay = ScoreDisplay(this);
     highscoreDisplay = HighscoreDisplay(this);
 
@@ -77,10 +86,10 @@ class LangawGame extends Game {
 
     score = 0;
 
-
     homeBGM = await Flame.audio.loopLongAudio('bgm/home.mp3', volume: .25);
     homeBGM.pause();
-    playingBGM = await Flame.audio.loopLongAudio('bgm/playing.mp3', volume: .25);
+    playingBGM =
+        await Flame.audio.loopLongAudio('bgm/playing.mp3', volume: .25);
     playingBGM.pause();
 
     playHomeBGM();
@@ -139,6 +148,9 @@ class LangawGame extends Game {
 
     if (activeView == View.lost) lostView.render(canvas);
 
+    musicButton.render(canvas);
+    soundButton.render(canvas);
+
     if (activeView == View.help) helpView.render(canvas);
     if (activeView == View.credits) creditsView.render(canvas);
   }
@@ -166,6 +178,18 @@ class LangawGame extends Game {
         activeView = View.home;
         isHandled = true;
       }
+    }
+
+    // 音乐按钮
+    if (!isHandled && musicButton.rect.contains(d.globalPosition)) {
+      musicButton.onTapDown();
+      isHandled = true;
+    }
+
+    // 音效按钮
+    if (!isHandled && soundButton.rect.contains(d.globalPosition)) {
+      soundButton.onTapDown();
+      isHandled = true;
     }
 
     // "开始游戏"按钮
