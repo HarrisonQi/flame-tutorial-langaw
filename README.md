@@ -19,3 +19,6 @@
 - 教程博客内容灵感部分来源于官方文档[《Create a Mobile Game with Flutter and Flame – Beginner Tutorial》](https://jap.alekhin.io/create-mobile-game-flutter-flame-beginner-tutorial)
 - [Flame仓库地址](https://github.com/flame-engine/flame)
 - [pub.dev地址](https://pub.flutter-io.cn/packages/flame)
+
+## 讨论
+欢迎在博客下方评论区进行讨论, 或者点击加入[阿航的Flame交流群(QQ)](https://jq.qq.com/?_wv=1027&k=5ETLFm3)
