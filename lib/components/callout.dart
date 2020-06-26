@@ -31,8 +31,10 @@ class Callout {
   }
 
   void render(Canvas c) {
-    sprite.renderRect(c, rect);
-    tp.paint(c, textOffset);
+    if (rect != null){
+      sprite.renderRect(c, rect);
+      tp.paint(c, textOffset);
+    }
   }
 
   void update(double t) {
