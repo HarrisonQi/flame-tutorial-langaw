@@ -1,3 +1,5 @@
+> [Flame中文网](https://www.flame-cn.com)已经建成，欢迎大家来到[Flame中文论坛](https://bbs.flame-cn.com)进行讨论
+
 # langaw
 
 [Flutter游戏开发(flame)](https://blog.bugcatt.com/archives/279)系列教程代码仓库
