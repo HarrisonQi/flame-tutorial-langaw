@@ -26,5 +26,7 @@
 欢迎在博客下方评论区进行讨论, 或者点击加入[阿航的Flame交流群(QQ)](https://jq.qq.com/?_wv=1027&k=5ETLFm3)
 
 ## Personal wechat
+
 Wechat ID: bugcatt
-![Wechat](https://www.bugcatt.com/wp-content/uploads/2021/01/qrcode.jpg)
+
+![Wechat](qrcode.png)
