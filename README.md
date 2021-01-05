@@ -29,4 +29,4 @@
 
 Wechat ID: bugcatt
 
-![Wechat](qrcode.png)
+![Wechat](/qrcode.png)
